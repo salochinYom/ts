@@ -1,7 +1,7 @@
-LTL Optimal Multi-Agent Planner (LOMAP)
+Transition Systems from LTL Optimal Multi-Agent Planner (LOMAP)
 =======================================
 
-This repo is based on the following repository described below. It has been modified to support Python 3 and NetworkX 3.1.
+This is a bare-bones version of the LOMAP repository described below. It has been modified to support Python 3 and NetworkX 3.1, and only includes the functionality required to use transition systems.
 
 LTL Optimal Multi-Agent Planner (LOMAP) is a python package for automatic
 planning of optimal paths for multi-agent systems.
@@ -16,25 +16,15 @@ Copyright (C) 2013-2020, Cristian-Ioan Vasile (cvasile@lehigh.edu,
 ## Installation Instructions
 
 Linux (Ubuntu) -- using Anaconda
-1. Clone the _lomap_ repository
+1. Clone the _ts_ repository
   * Navigate to desired location
   * Run the following line in shell:
 
   ```bash
-  git clone https://github.com/wpi-automata/lomap.git
+  git clone https://github.com/wpi-automata/ts.git
   ```
 
-2. Install _Spot_ using Debian Packages (https://spot.lrde.epita.fr/install.html)
-  * Run the following lines in shell:
-
-    ```bash
-    wget -q -O - https://www.lrde.epita.fr/repo/debian.gpg | sudo apt-key add -
-    sudo sh -c "echo 'deb http://www.lrde.epita.fr/repo/debian/ stable/' >> /etc/apt/sources.list"
-    sudo apt update
-    sudo apt install spot libspot-dev spot-doc
-    ```
-
-3. Install necessary dependencies:
+2. Install necessary dependencies:
 
   * Run the following lines in shell:
 
@@ -44,29 +34,9 @@ Linux (Ubuntu) -- using Anaconda
     conda install matplotlib networkx numpy pyyaml
     ```
 
-4. Download and unpack _ltl2dstar_
-  * Download from: https://www.ltl2dstar.de/
-  * Unpack _ltl2dstar_
-  * Navigate to the _ltl2dstar_ folder
-  * Run the following lines in shell:
+Perform either 3.a. or 3.b. depending on your operating system.
 
-      ```bash
-      mkdir build
-      cd build/
-      cmake -DCMAKE_BUILD_TYPE=Release ../src
-      make
-      ```
-
-  * Optionally add the binary to folder in `PATH`
-    * For example:
-
-      ```bash
-      mkdir ~/bin
-      cp ltl2dstar ~/bin/
-      echo 'export PATH="$PATH:$HOME/bin"' >> ~/.bashrc
-      ```
-
-5. Set `$PYTHONPATH` to include the location of the _lomap_ library:
+3.a. (Ubuntu only) Set `$PYTHONPATH` to include the location of the _lomap_ library:
   * Run the following line in shell:
 
       ```bash
@@ -78,11 +48,24 @@ Linux (Ubuntu) -- using Anaconda
       ```bash
       echo 'export PYTHONPATH="${PYTHONPATH}:/path/to/lomap"' >> ~/.bashrc
       ```
+3.b. (Windows) Install lomap to your Anaconda environment
+* Activate your Anaconda environment (if not already active)
 
-6. Test if the setup worked properly:
+    ```
+    conda activate <env name from step 2.>
+    ```
+
+* Navigate to the lomap folder
+
+* Install
+    ```
+    pip install -e .
+    ```
+    
+4. Test if the setup worked properly:
   * Navigate to `/lomap/lomap/tests`
   * Run any of the Python test files
-    * Ex. `python test_automata.py`
+    * Ex. `python test_yaml.py`
 
 ### Common Issues:
 1. ```python
