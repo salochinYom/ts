@@ -25,5 +25,6 @@ import networkx as nx
 from lomap.classes import Model, Ts
 
 if __name__ == '__main__':
-    ts = Ts.load('c:/Users/kleahy/ts_575/lomap/lomap/tests/simple_network.yaml')
+    # You may need to update this using absolute paths, depending on your system's configuration.
+    ts = Ts.load('./simple_network.yaml')
     ts.visualize()
