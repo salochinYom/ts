@@ -1,0 +1,18 @@
+!Ts
+name: Pedestrian signal
+directed: false # Denotes if graph should be directed -- not needed for RBE 575
+multi: false # Denotes if graph should be a multi-graph -- not needed for RBE 575
+init: ['s0'] # inital state
+final: []
+graph:
+  nodes:
+    s0: # State name is q0
+      prop: !!set {'r': null} # Label is 'w' for walk
+      location: !!python/tuple [0.000, 0.000] # Location is 0.0 -- not needed for RBE 575
+    s1:
+      prop: !!set {'g': null} # Label is 'd' for don't walk
+      location: !!python/tuple [0.175, 0.096]
+  edges:
+  - [s0, s1, {'weight': 1}]
+  - [s1, s0, {'weight': 1}] 
+  - [s1, s1, {'weight': 1}]

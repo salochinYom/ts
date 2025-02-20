@@ -28,3 +28,9 @@ if __name__ == '__main__':
     # You may need to update this using absolute paths, depending on your system's configuration.
     ts = Ts.load('./simple_network.yaml')
     ts.visualize()
+
+    ts = Ts.load('./traffic_light.yaml')
+    ts.visualize()
+
+    ts = Ts.load('./pedestrian_signal.yaml')
+    ts.visualize()
