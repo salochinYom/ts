@@ -1,6 +1,6 @@
 !Ts
 name: Pedestrian signal
-directed: false # Denotes if graph should be directed -- not needed for RBE 575
+directed: true # Denotes if graph should be directed
 multi: false # Denotes if graph should be a multi-graph -- not needed for RBE 575
 init: ['s0'] # inital state
 final: []

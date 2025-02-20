@@ -1,6 +1,6 @@
 !Ts
 name: Simple network
-directed: false # Denotes if graph should be directed -- not needed for RBE 575
+directed: false # Denotes if graph should be directed -- generally should be True for RBE 575
 multi: false # Denotes if graph should be a multi-graph -- not needed for RBE 575
 init: ['A'] # inital state
 final: []

@@ -14,15 +14,7 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-from __future__ import print_function
-
-import random
-import os
-import tempfile
-
-import networkx as nx
-
-from lomap.classes import Model, Ts
+from lomap.classes import Ts
 
 if __name__ == '__main__':
     # You may need to update this using absolute paths, depending on your system's configuration.
