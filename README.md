@@ -72,9 +72,9 @@ Perform either 3.a. or 3.b. depending on your operating system.
       ImportError: No module named lomap.classes
    ```
   * Problem: The _lomap_ library is not in the path variable `PYTHONPATH`
-  * Possible Solution: Manually add _lomap_ to your Python directory
+  * Possible Solution: Manually add the parent directory of _lomap_ to your Python directory
     ```bash
-    cd <lomap_directory>
+    cd <lomap_parent_directory>
     export PYTHONPATH="$PYTHONPATH:$PWD"
     ```
 
