@@ -55,7 +55,7 @@ Perform either 3.a. or 3.b. depending on your operating system.
     conda activate <env name from step 2.>
     ```
 
-* Navigate to the lomap folder
+* Navigate to the ts folder
 
 * Install
     ```
