@@ -1,14 +1,14 @@
 !Ts
 name: Simple network
-directed: false
-multi: false
-init: ['A']
+directed: false # Denotes if graph should be directed -- not needed for RBE 575
+multi: false # Denotes if graph should be a multi-graph -- not needed for RBE 575
+init: ['A'] # inital state
 final: []
 graph:
   nodes:
-    A:
-      prop: !!set {'a': null}
-      location: !!python/tuple [0.000, 0.000]
+    A: # State name is A
+      prop: !!set {'a': null} # Label is 'a'
+      location: !!python/tuple [0.000, 0.000] # Location is 0.0 -- not needed for RBE 575
     B:
       prop: !!set {'b': null}
       location: !!python/tuple [0.175, 0.096]
@@ -16,7 +16,7 @@ graph:
       prop: !!set {'c': null}
       location: !!python/tuple [0.350, 0.192]
     D:
-      prop: !!set {'d': null, 'dropoff': null}
+      prop: !!set {'d': null, 'dropoff': null} # State D has multiple labels -- d and dropoff
       location: !!python/tuple [0.025, -0.096]
     E:
       prop: !!set {'e': null}
@@ -31,8 +31,8 @@ graph:
       prop: !!set {'h': null, 'dropoff': null}
       location: !!python/tuple [0.475, -0.304]
   edges:
-  - [A, B, {'weight': 2}]
-  - [A, D, {'weight': 1}]
+  - [A, B, {'weight': 2}] # A and B are joined by an edge of weight 2 -- weights are not important for RBE 575
+  - [A, D, {'weight': 1}] # A and D are joined by an edge of weight 1 -- weights are not important for RBE 575
   - [A, E, {'weight': 2}]
   - [B, C, {'weight': 2}]
   - [B, E, {'weight': 1}]

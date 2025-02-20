@@ -15,6 +15,5 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 from .classes import Model, Ts
-from .algorithms.product import *
 
 __version__ = (0, 1, 2)
