@@ -40,13 +40,13 @@ Perform either 3.a. or 3.b. depending on your operating system.
   * Run the following line in shell:
 
       ```bash
-      export PYTHONPATH="${PYTHONPATH}:/path/to/lomap"
+      export PYTHONPATH="${PYTHONPATH}:/path/to/ts"
       ```
 
   * Optionally make this setting persistent:
 
       ```bash
-      echo 'export PYTHONPATH="${PYTHONPATH}:/path/to/lomap"' >> ~/.bashrc
+      echo 'export PYTHONPATH="${PYTHONPATH}:/path/to/ts"' >> ~/.bashrc
       ```
 3.b. (Windows) Install lomap to your Anaconda environment
 * Activate your Anaconda environment (if not already active)
@@ -63,7 +63,7 @@ Perform either 3.a. or 3.b. depending on your operating system.
     ```
     
 4. Test if the setup worked properly:
-  * Navigate to `/lomap/lomap/tests`
+  * Navigate to `/ts/lomap/tests`
   * Run any of the Python test files
     * Ex. `python test_yaml.py`
 
