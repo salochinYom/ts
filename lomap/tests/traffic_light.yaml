@@ -8,7 +8,8 @@ graph:
   nodes:
     q0: # State name is q0
       prop: !!set {'r': null} # Label is 'r' for red
-      location: !!python/tuple [0.000, 0.000] # Location is 0.0 -- not needed for RBE 575
+      #location: !!python/tuple [0.000, 0.000] # Location is 0.0 -- not needed for RBE 575
+      location: !!python/tuple [0.000, 0.100] # Location is 0.0 -- not needed for RBE 575
     q1:
       prop: !!set {'g': null} # Label is 'g' for green
       location: !!python/tuple [0.175, 0.096]
