@@ -34,7 +34,7 @@ def recursive_edge_adder(edgesToCheck, transition_system, ts1, ts2, known_edges)
         #print(edgesToCheck)
 
         transition_system = recursive_edge_adder(edgesToCheck, transition_system, ts1, ts2, known_edges)
-    print(known_edges)
+    #print(known_edges)
     return transition_system
 if __name__ == '__main__':
     #initialize the traffic light
