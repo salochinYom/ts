@@ -19,6 +19,7 @@ from __future__ import absolute_import
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 from lomap.classes.model import Model
+from lomap.classes.automata import Automaton, Buchi, Fsa
 from lomap.classes.ts import Ts
 
 def model_representer(dumper, model,
@@ -96,8 +97,17 @@ except ImportError: # else use default PyYAML loader and dumper
 
 Dumper.add_representer(Model, model_representer)
 Dumper.add_representer(Ts, model_representer)
+Dumper.add_representer(Automaton, automaton_representer)
+Dumper.add_representer(Buchi, automaton_representer)
+Dumper.add_representer(Fsa, automaton_representer)
 
 Loader.add_constructor(Model.yaml_tag,
     lambda loader, model: model_constructor(loader, model, Model))
 Loader.add_constructor(Ts.yaml_tag,
     lambda loader, model: model_constructor(loader, model, Ts))
+Loader.add_constructor(Automaton.yaml_tag,
+  lambda loader, automaton: automaton_constructor(loader, automaton, Automaton))
+Loader.add_constructor(Buchi.yaml_tag,
+    lambda loader, automaton: automaton_constructor(loader, automaton, Buchi))
+Loader.add_constructor(Fsa.yaml_tag,
+    lambda loader, automaton: automaton_constructor(loader, automaton, Fsa))
