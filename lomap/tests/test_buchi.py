@@ -1,11 +1,11 @@
 from lomap.classes import Buchi, Fsa
 
 # note, you may need to enter the full path to this file, depending on your environment
-fsa_file = './fa_and_fb.txt'
+fsa_file = 'lomap/tests/fa_and_fb.txt'
 fsa_formula = 'F a && F b'
 
 # note, you may need to enter the full path to this file, depending on your environment
-buchi_file = './fga_and_fb.txt'
+buchi_file = 'lomap/tests/fga_and_fb.txt'
 buchi_formula = 'F G a && F b'
 
 # instantiate an FSA from a file
