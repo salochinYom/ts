@@ -1,0 +1,30 @@
+!Ts
+name: Simple network
+directed: false # Denotes if graph should be directed -- generally should be True for RBE 575
+multi: false # Denotes if graph should be a multi-graph -- not needed for RBE 575
+init: ['q0'] # inital state
+final: []
+graph:
+  nodes:
+    q0:
+      prop: !!set {} 
+      location: !!python/tuple [0.000, 0.000] # Location is 0.0 -- not needed for RBE 575
+    q1:
+      prop: !!set {'a': null}
+      location: !!python/tuple [0.175, 0.096]
+    q2:
+      prop: !!set {'b': null}
+      location: !!python/tuple [0.350, 0.192]
+    q3:
+      prop: !!set {} 
+      location: !!python/tuple [0.025, -0.096]
+    q4:
+      prop: !!set {}
+      location: !!python/tuple [0.200, 0.000]
+  edges:
+  - [q0, q1, {'weight': 1}]
+  - [q1, q3, {'weight': 1}]
+  - [q3, q4, {'weight': 1}]
+  - [q4, q1, {'weight': 1}]
+  - [q1, q2, {'weight': 1}]
+  - [q2, q2, {'weight': 1}]
