@@ -76,6 +76,7 @@ if __name__ == '__main__':
             edgesToCheck.append([Is1, Is2, q,s])
     #print(edgesToCheck)
 
+    #recusively add edges
     recursive_edge_adder(edgesToCheck, product_system, hw_6_ts, fsa, [])
 
     #remove unreachable nodes
