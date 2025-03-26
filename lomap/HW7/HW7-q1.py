@@ -1,6 +1,39 @@
 from lomap.classes import Buchi, Fsa
 from lomap.classes import Ts
 
+
+def find_accepting_path(product_system, fsa_accepting_states):
+    """
+    Finds an accepting path in the product system.
+    :param product_system: The product transition system (Ts object).
+    :param fsa_accepting_states: A list of accepting states in the FSA.
+    :return: A list representing the accepting path, or None if no path exists.
+    """
+    from collections import deque
+
+    # Initialize BFS queue with the initial state
+    initial_state = list(product_system.init)[0]
+    print(initial_state)
+    queue = deque([(initial_state, [initial_state])])  # (current_node, path_to_node)
+    print(queue)
+
+    while queue:
+        current_node, path = queue.popleft()
+
+        print(current_node)
+
+        # # Check if the current node satisfies the acceptance condition
+        # ts_state, fsa_state = current_node.split(",")
+        if current_node in fsa_accepting_states:
+            return path  # Found an accepting path
+
+        # Add neighbors to the queue
+        for neighbor in product_system.g.adj[current_node]:
+            if neighbor not in path:  # Avoid cycles
+                queue.append((neighbor, path + [neighbor]))
+
+    return None  # No accepting path found
+
 def recursive_edge_adder(edgesToCheck, transition_system, ts1, ts2, known_edges):
     if len(edgesToCheck) > 0:
         IsA = edgesToCheck[0][2]
@@ -37,7 +70,7 @@ def recursive_edge_adder(edgesToCheck, transition_system, ts1, ts2, known_edges)
 if __name__ == '__main__':
     #initialize the transition system
     hw_6_ts = Ts.load('lomap/tests/hw_6_ts.yaml')
-    #hw_6_ts.visualize()
+    hw_6_ts.visualize()
 
     #initalize the FSA
     fsa_file = 'lomap/tests/fa_and_fb.txt'
@@ -45,7 +78,7 @@ if __name__ == '__main__':
 
     fsa = Fsa()
     fsa.from_formula(fsa_formula,fsa_file)
-    #fsa.visualize()
+    fsa.visualize()
 
     #initalize the new transition system
     product_system = Ts(name='product TS',multi=False,directed=True)
@@ -90,8 +123,15 @@ if __name__ == '__main__':
     #remove the nodes
     product_system.g.remove_nodes_from(rm_nodes)
 
+    #product system appart of question 1
     product_system.visualize()
-    #print(type(product_system))
-    #print(len(product_system.g.nodes))
+
+    #list of accepting states
+    fsa_accepting_states = [state for state in product_system.g.nodes if "accept_all" in state]
+    print(fsa_accepting_states)
+
+    #accepting_path = find_accepting_path(product_system, fsa_accepting_states)
+
+    #print(accepting_path)
 
 
