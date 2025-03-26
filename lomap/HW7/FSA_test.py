@@ -20,10 +20,10 @@ B.init # initial state
 B.final # final state
 
 # visualize
-F.visualize()
+#F.visualize()
 B.visualize()
 
 # # get next state(s) for a given input
-# B.next_state('T0_init','a') # state is 'T0_init', input is 'a'
-# B.next_state('T0_init','ab') 
-# B.next_state('T0_init','a && b') # this is equivalent to the line above
+print(B.next_state('T0_init','a')) # state is 'T0_init', input is 'a'
+print(B.next_state('T0_init','ab')) 
+print(B.next_state('T0_init','a && b')) # this is equivalent to the line above
