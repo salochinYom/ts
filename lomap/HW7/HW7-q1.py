@@ -34,7 +34,7 @@ def find_accepting_path(product_system, fsa_accepting_states):
 
     return None  # No accepting path found
 
-def recursive_edge_adder(edgesToCheck, transition_system, ts1, ts2, known_edges):
+def recursive_edge_adder(edgesToCheck, transition_system, ts1, fsa, known_edges):
     if len(edgesToCheck) > 0:
         IsA = edgesToCheck[0][2]
         IsB = edgesToCheck[0][3]
@@ -43,29 +43,26 @@ def recursive_edge_adder(edgesToCheck, transition_system, ts1, ts2, known_edges)
         #transition_system.visualize()
         #remove the first edge and put it into known edges
         known_edges.append(edgesToCheck.pop(0))
-        #add edges to the thing
+        #print(known_edges)
+        #iterate over all neighbors of the ts
         for q in list(ts1.g.adj[str(IsA)]):
-            for s in list(ts2.g.adj[str(IsB)]):
-                #print(q + "," + s)
-                #check this edge against every other edge we have been to
+            #iterate over all the next states of the FSA
+            for s in list(fsa.next_state(str(IsB), hw_6_ts.g.nodes[str(IsA)]['prop'])):
+                #print(str(q) + ' , ' + str(s))
+                #check against edges we have been to
                 have_been_to = False
                 for i in range(len(known_edges)):
                     if known_edges[i][0] == IsA and known_edges[i][1] == IsB and known_edges[i][2] == q and known_edges[i][3] == s:
                         have_been_to = True
-
-                #check against every edge that we need to check
-                # for i in range(len(edgesToCheck)):
-                #     if edgesToCheck[i][0] == IsA and edgesToCheck[i][1] == IsB and edgesToCheck[i][2] == q and edgesToCheck[i][3]:
-                #         have_been_to = True
-
-                
+                #add to the list of edges to check
+                print(have_been_to)
                 if not have_been_to:
+                    print("hello world")
                     edgesToCheck.append([IsA, IsB, q,s])
-        
-        #show the edge list
-        #print(edgesToCheck)
+    
+        print(len(edgesToCheck))
+        transition_system = recursive_edge_adder(edgesToCheck, transition_system, ts1, fsa, known_edges)
 
-        transition_system = recursive_edge_adder(edgesToCheck, transition_system, ts1, ts2, known_edges)
 
 if __name__ == '__main__':
     #initialize the transition system
@@ -101,15 +98,19 @@ if __name__ == '__main__':
             #print(str(q) + "," + str(s))
             product_system.g.add_node(str(q) + "," + str(s), prop="red")
 
-    #intialize all the edges
+    #print(hw_6_ts.g.nodes[str(Is1)]['prop'])
+    #print(str(Is1))
+    #product_system.visualize()
+
+    #initalize edges to check
     edgesToCheck = []
-    for q in list(hw_6_ts.g.adj[str(Is1)]): #this should be all reachable states from the inital
-        for s in list(fsa.g.adj[str(Is2)]): #this should be all reachable states from the inital state in the FSA
-            #print(q + "," + s)
-            edgesToCheck.append([Is1, Is2, q,s])
+    for q in list(hw_6_ts.g.adj[str(Is1)]): #things adjacent to init of ts system
+        for s in list(fsa.next_state(str(Is2), hw_6_ts.g.nodes[str(Is1)]['prop'])): #things adjacent in the FSA based off the prop in the current ts state
+            #print(str(q) + " " + str(s))
+            edgesToCheck.append([Is1, Is2, q, s])
     #print(edgesToCheck)
 
-    #recusively add edges
+    #run the recursive thing
     recursive_edge_adder(edgesToCheck, product_system, hw_6_ts, fsa, [])
 
     #remove unreachable nodes
@@ -122,16 +123,8 @@ if __name__ == '__main__':
             rm_nodes.append(str(node))
     #remove the nodes
     product_system.g.remove_nodes_from(rm_nodes)
-
-    #product system appart of question 1
+    
+    #solution to part 1
     product_system.visualize()
-
-    #list of accepting states
-    fsa_accepting_states = [state for state in product_system.g.nodes if "accept_all" in state]
-    print(fsa_accepting_states)
-
-    #accepting_path = find_accepting_path(product_system, fsa_accepting_states)
-
-    #print(accepting_path)
 
 
