@@ -13,14 +13,14 @@ def find_accepting_path(product_system, fsa_accepting_states):
 
     # Initialize BFS queue with the initial state
     initial_state = list(product_system.init)[0]
-    print(initial_state)
+    #print(initial_state)
     queue = deque([(initial_state, [initial_state])])  # (current_node, path_to_node)
-    print(queue)
+    #print(queue)
 
     while queue:
         current_node, path = queue.popleft()
 
-        print(current_node)
+        #print(current_node)
 
         # # Check if the current node satisfies the acceptance condition
         # ts_state, fsa_state = current_node.split(",")
@@ -55,26 +55,33 @@ def recursive_edge_adder(edgesToCheck, transition_system, ts1, fsa, known_edges)
                     if known_edges[i][0] == IsA and known_edges[i][1] == IsB and known_edges[i][2] == q and known_edges[i][3] == s:
                         have_been_to = True
                 #add to the list of edges to check
-                print(have_been_to)
+                #print(have_been_to)
                 if not have_been_to:
-                    print("hello world")
+                    #print("hello world")
                     edgesToCheck.append([IsA, IsB, q,s])
     
-        print(len(edgesToCheck))
+        #print(len(edgesToCheck))
         transition_system = recursive_edge_adder(edgesToCheck, transition_system, ts1, fsa, known_edges)
 
 
 if __name__ == '__main__':
     #initialize the transition system
     hw_6_ts = Ts.load('lomap/tests/hw_6_ts.yaml')
-    hw_6_ts.visualize()
+    #hw_6_ts.visualize()
 
     #initalize the FSA
     fsa_file = 'lomap/tests/fa_and_fb.txt'
     fsa_formula = 'F a && F b'
 
+    buchi_file = 'lomap/tests/fga_and_fb.txt'
+    buchi_formula = 'F G a && F b'
+
     fsa = Fsa()
     fsa.from_formula(fsa_formula,fsa_file)
+    # fsa = Buchi()
+    # fsa.from_formula(buchi_formula,buchi_file)
+    
+
     fsa.visualize()
 
     #initalize the new transition system
@@ -126,5 +133,18 @@ if __name__ == '__main__':
     
     #solution to part 1
     product_system.visualize()
+
+    #part 2
+
+    #intialize the accepting states
+    # Define the accepting states in the FSA
+    fsa_accepting_states = [state for state in product_system.g.nodes if "accept" in state]
+    #print(fsa_accepting_states)
+
+    # Find an accepting path in the product system
+    accepting_path = find_accepting_path(product_system, fsa_accepting_states)
+
+    print(accepting_path)
+
 
 
